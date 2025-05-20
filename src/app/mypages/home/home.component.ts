@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UserServicesService } from '../../myservices/user-services.service';
 
 @Component({
   selector: 'app-home',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  userServices = inject(UserServicesService);
 
+  async ngOnInit() {
+    const user = await this.userServices.getUser();
+  }
 }

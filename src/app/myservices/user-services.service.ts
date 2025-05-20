@@ -30,4 +30,20 @@ export class UserServicesService {
       return { success: false, error };
     }
   }
+
+  async getUser(): Promise<any> {
+    try {
+      const res = this.http.get<any>(
+        `${this.url}/api/user/profile`,
+        {
+          withCredentials: true
+        }
+      );
+      const result = await firstValueFrom(res);
+      return { success: true, data: result };
+    } catch (error) {
+      console.log("Login error", error);
+      return { success: false, error };
+    }
+  }
 }
