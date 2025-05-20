@@ -13,14 +13,10 @@
       </div>
     </div>
   </ng-template>
-  <nav
+  <nav *ngIf="!isLoginPage"
     class="sticky-top d-flex flex-row align-items-center justify-content-between shadow-sm py-2 px-2 px-md-3 px-lg-4 mx-0">
-    <button *ngIf="!isLoginPage" class="btn btn-outline-info" (click)="openDrawer()"><i
-        class="fa-solid fa-bars"></i></button>
-    <div *ngIf="isLoginPage" class="me-lg-auto ms-lg-2">
-      <app-app-logo></app-app-logo>
-    </div>
-    <div *ngIf="!isLoginPage" ngbDropdown>
+    <button class="btn btn-outline-info" (click)="openDrawer()"><i class="fa-solid fa-bars"></i></button>
+    <div ngbDropdown>
       <button type="button" class="btn btn-outline-info" id="dropdownBasic1" ngbDropdownToggle>
         <i class="fa-solid fa-user me-2"></i>
       </button>
