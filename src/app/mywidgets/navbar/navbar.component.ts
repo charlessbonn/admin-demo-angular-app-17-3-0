@@ -83,4 +83,8 @@ export class NavbarComponent {
       }
     });
   }
+
+  ngOnDestroy() {
+    this.profileSub.unsubscribe(); // Prevent memory leaks
+  }
 }

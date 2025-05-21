@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { User, Users } from '../myinterfaces/user';
 import { environment } from '../../environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServicesService {
 
-  constructor(private http: HttpClient) { }
+  http: HttpClient = inject(HttpClient);
+  cookieService: CookieService = inject(CookieService);
 
   url = environment.API_URL;
   defaultUsersData: Users = {};
@@ -27,6 +29,7 @@ export class UserServicesService {
         }
       );
       const result = await firstValueFrom(res);
+      this.cookieService.set('user-session', 'true', 1, '/', '', true, "Strict");
       return { success: true, data: "You have been logged in successfully." };
     } catch (error) {
       console.log("Login error", error);
@@ -44,6 +47,7 @@ export class UserServicesService {
         }
       );
       const result = await firstValueFrom(res);
+      this.cookieService.set('user-session', '', 0, '/', '', true, "Strict");
       return { success: true, data: "You have been logged out successfully." };
     } catch (error) {
       console.log("Login error", error);
