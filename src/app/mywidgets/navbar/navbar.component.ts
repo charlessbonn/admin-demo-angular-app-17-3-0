@@ -23,6 +23,7 @@ export class NavbarComponent {
   isLoginPage = false;
   nonUserRoutes = [
     "/",
+    "/logout",
     "/forgot-password",
   ];
   userLink = `/${routeNames.user.path}`;
@@ -74,10 +75,9 @@ export class NavbarComponent {
   profileData: User = {};
 
   ngOnInit() {
-    const hasToken = getCookie('user-session');
     this.profileSub = this.profile.subscribe((data) => {
       this.profileData = data;
-      
+      const hasToken = getCookie('user-session');
       if(!data._id && hasToken){
         this.profileStore.getProfile();
       }
