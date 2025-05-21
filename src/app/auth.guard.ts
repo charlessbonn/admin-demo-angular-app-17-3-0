@@ -15,14 +15,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   }
 };
 
-function getCookie(name: string): string | null {
-  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : null;
-}
-
 import { inject, Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { routeNames } from './app.routes';
+import { getCookie } from './utils/cookie';
 
 @Injectable({
   providedIn: 'root',

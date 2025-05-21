@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { UserServicesService } from '../../myservices/user-services.service';
 import { CommonModule } from '@angular/common';
 import { AppLogoComponent } from "../../mywidgets/app-logo/app-logo.component";
+import { ProfileStore } from '../../mystores/profile.store';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ import { AppLogoComponent } from "../../mywidgets/app-logo/app-logo.component";
 export class LoginComponent {
   router = inject(Router);
   userServices = inject(UserServicesService);
+  profileStore = inject(ProfileStore);
   
   loading = false;
   email = "";
@@ -36,7 +38,8 @@ export class LoginComponent {
     this.loading = false;
 
     if(result.success){
-      this.router.navigate([routeNames.home.path]);
+      this.router.navigate([routeNames.user.path]);
+      this.profileStore.getProfile();
     }
   }
 }

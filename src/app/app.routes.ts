@@ -4,6 +4,7 @@ import { LoginComponent } from './mypages/login/login.component';
 import { ForgotPasswordComponent } from './mypages/forgot-password/forgot-password.component';
 import { authGuard } from './auth.guard';
 import { LogoutComponent } from './mypages/logout/logout.component';
+import { UserComponent } from './mypages/user/user.component';
 
 export const routeNames = {
     home: {
@@ -25,6 +26,11 @@ export const routeNames = {
         path: 'forgot-password',
         title: "Forgot Password",
         component: ForgotPasswordComponent,
+    },
+    user: {
+        path: 'user',
+        title: "Users",
+        component: UserComponent,
     },
 }
 
@@ -52,5 +58,11 @@ export const routes: Routes = [
         component: routeNames.forgotPassword.component,
         title: `Admin | ${routeNames.forgotPassword.title}`,
         // canActivate: [authGuard],
+    },
+    {
+        path: routeNames.user.path,
+        component: routeNames.user.component,
+        title: `Admin | ${routeNames.user.title}`,
+        canActivate: [authGuard],
     },
 ];

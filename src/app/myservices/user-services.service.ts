@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { User, Users } from '../myinterfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class UserServicesService {
   constructor(private http: HttpClient) { }
 
   url = "http://localhost:3000";
+  defaultUsersData: Users = {};
 
   async login(email: string, password: string): Promise<any> {
     try {
@@ -48,7 +50,7 @@ export class UserServicesService {
     }
   }
 
-  async getUser(): Promise<any> {
+  async getUser(): Promise<User> {
     try {
       const res = this.http.get<any>(
         `${this.url}/api/user/profile`,
@@ -57,10 +59,26 @@ export class UserServicesService {
         }
       );
       const result = await firstValueFrom(res);
-      return { success: true, data: result };
+      return result.data;
     } catch (error) {
-      console.log("Login error", error);
-      return { success: false, error };
+      console.log("Get user error", error);
+      return {};
+    }
+  }
+
+  async getAllUser(): Promise<Users> {
+    try {
+      const res = this.http.get<Users>(
+        `${this.url}/api/user`,
+        {
+          withCredentials: true
+        }
+      );
+      const result = await firstValueFrom(res);
+      return result;
+    } catch (error) {
+      console.log("Get users error", error);
+      return this.defaultUsersData;
     }
   }
 }
