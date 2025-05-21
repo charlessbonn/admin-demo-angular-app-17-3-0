@@ -21,8 +21,8 @@
         <i class="fa-solid fa-user me-2"></i>
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem>Account</button>
-        <button ngbDropdownItem>Logout</button>
+        <button ngbDropdownItem (click)="onAccount()">Account</button>
+        <button ngbDropdownItem (click)="onLogout()">Logout</button>
       </div>
     </div>
   </nav>

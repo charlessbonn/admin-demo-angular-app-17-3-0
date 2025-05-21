@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './mypages/home/home.component';
 import { LoginComponent } from './mypages/login/login.component';
 import { ForgotPasswordComponent } from './mypages/forgot-password/forgot-password.component';
+import { authGuard } from './auth.guard';
+import { LogoutComponent } from './mypages/logout/logout.component';
 
 export const routeNames = {
     home: {
@@ -13,6 +15,11 @@ export const routeNames = {
         path: '',
         title: "Login",
         component: LoginComponent,
+    },
+    logout: {
+        path: 'logout',
+        title: "Logout",
+        component: LogoutComponent,
     },
     forgotPassword: {
         path: 'forgot-password',
@@ -26,12 +33,18 @@ export const routes: Routes = [
         path: routeNames.home.path,
         component: routeNames.home.component,
         title: `Admin | ${routeNames.home.title}`,
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
     },
     {
         path: routeNames.login.path,
         component: routeNames.login.component,
         title: `Admin | ${routeNames.login.title}`,
+        // canActivate: [authGuard],
+    },
+    {
+        path: routeNames.logout.path,
+        component: routeNames.logout.component,
+        title: `Admin | ${routeNames.logout.title}`,
         // canActivate: [authGuard],
     },
     {
