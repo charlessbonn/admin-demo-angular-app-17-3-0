@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { User, Users } from '../myinterfaces/user';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserServicesService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://localhost:3000";
+  url = environment.API_URL;
   defaultUsersData: Users = {};
 
   async login(email: string, password: string): Promise<any> {
