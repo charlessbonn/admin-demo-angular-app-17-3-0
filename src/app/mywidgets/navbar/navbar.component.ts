@@ -28,6 +28,7 @@ export class NavbarComponent {
     "/forgot-password",
   ];
   userLink = `/${routeNames.user.path}`;
+  productLink = `/${routeNames.product.path}`;
 
   constructor() {
     this.trackNavigation();

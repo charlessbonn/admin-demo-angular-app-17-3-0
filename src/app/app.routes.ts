@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from './mypages/forgot-password/forgot-passwo
 import { authGuard } from './auth.guard';
 import { LogoutComponent } from './mypages/logout/logout.component';
 import { UserComponent } from './mypages/user/user.component';
+import { ProductComponent } from './mypages/product/product.component';
 
 export const routeNames = {
     home: {
@@ -31,6 +32,11 @@ export const routeNames = {
         path: 'user',
         title: "Users",
         component: UserComponent,
+    },
+    product: {
+        path: 'product',
+        title: "Products",
+        component: ProductComponent,
     },
 }
 
@@ -63,6 +69,12 @@ export const routes: Routes = [
         path: routeNames.user.path,
         component: routeNames.user.component,
         title: `Admin | ${routeNames.user.title}`,
+        canActivate: [authGuard],
+    },
+    {
+        path: routeNames.product.path,
+        component: routeNames.product.component,
+        title: `Admin | ${routeNames.product.title}`,
         canActivate: [authGuard],
     },
 ];
