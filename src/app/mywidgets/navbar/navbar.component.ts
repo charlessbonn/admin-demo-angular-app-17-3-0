@@ -8,6 +8,7 @@ import { routeNames } from '../../app.routes';
 import { ProfileStore } from '../../mystores/profile.store';
 import { User } from '../../myinterfaces/user';
 import { getCookie } from '../../utils/cookie';
+import { Status } from '../../utils/enums';
 
 @Component({
   selector: 'app-navbar',
@@ -71,14 +72,18 @@ export class NavbarComponent {
   // Profile
   profileStore = inject(ProfileStore);
   profile = this.profileStore.profile$;
+  status = this.profileStore.status$;
   profileSub = Subscription.EMPTY;
+  statusSub = Subscription.EMPTY;
   profileData: User = {};
 
   ngOnInit() {
     this.profileSub = this.profile.subscribe((data) => {
       this.profileData = data;
+    });
+    this.statusSub = this.status.subscribe((data) => {
       const hasToken = getCookie('user-session');
-      if(!data._id && hasToken){
+      if(data === Status.Initial && hasToken){
         this.profileStore.getProfile();
       }
     });
@@ -86,5 +91,6 @@ export class NavbarComponent {
 
   ngOnDestroy() {
     this.profileSub.unsubscribe(); // Prevent memory leaks
+    this.statusSub.unsubscribe(); // Prevent memory leaks
   }
 }
