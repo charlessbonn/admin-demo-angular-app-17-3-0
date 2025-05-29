@@ -24,6 +24,10 @@ export class NavbarComponent {
   changeLanguage(lang: string) {
     this.translate.use(lang); // dynamically switch
   }
+
+  get currentLanguage(): string {
+    return this.translate.currentLang;
+  }
   
   // Track Navigation
   offcanvasService = inject(NgbOffcanvas);
@@ -95,6 +99,9 @@ export class NavbarComponent {
       if(data === Status.Initial && hasToken){
         this.profileStore.getProfile();
       }
+    });
+    this.translate.onLangChange.subscribe((event) => {
+      console.log('Language changed to:', event.lang);
     });
   }
 

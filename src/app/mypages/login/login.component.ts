@@ -6,11 +6,12 @@ import { UserServicesService } from '../../myservices/user-services.service';
 import { CommonModule } from '@angular/common';
 import { AppLogoComponent } from "../../mywidgets/app-logo/app-logo.component";
 import { ProfileStore } from '../../mystores/profile.store';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterModule, CommonModule, AppLogoComponent],
+  imports: [FormsModule, RouterModule, CommonModule, AppLogoComponent, TranslateModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
