@@ -9,7 +9,7 @@
         <div class="">
             <button class="d-block btn btn-outline-light my-2 text-dark"
                 (click)="navigateAndClose(offcanvas, userLink)">Manage Users</button>
-                <button class="d-block btn btn-outline-light my-2 text-dark"
+            <button class="d-block btn btn-outline-light my-2 text-dark"
                 (click)="navigateAndClose(offcanvas, productLink)">Manage Products</button>
         </div>
     </div>
@@ -25,6 +25,15 @@
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <button ngbDropdownItem (click)="onAccount()">Account</button>
             <button ngbDropdownItem (click)="onLogout()">Logout</button>
+            <hr />
+            <button class="d-flex flex-row align-items-center" ngbDropdownItem (click)="changeLanguage('en')">
+                <img alt="use-logo-icon" class="rounded-pill border border-secondary me-2" src="/assets/logo/us-icon.png" style="width: 30px; height: 30px;" />
+                English
+            </button>
+            <button class="d-flex flex-row align-items-center" ngbDropdownItem (click)="changeLanguage('ja')">
+                <img alt="use-logo-icon" class="rounded-pill border border-secondary me-2" src="/assets/logo/japan-icon.png" style="width: 30px; height: 30px;" />
+                日本語
+            </button>
         </div>
     </div>
 </nav>

@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { UserServicesService } from '../../myservices/user-services.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -9,6 +9,7 @@ import { ProfileStore } from '../../mystores/profile.store';
 import { User } from '../../myinterfaces/user';
 import { getCookie } from '../../utils/cookie';
 import { Status } from '../../utils/enums';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,12 @@ import { Status } from '../../utils/enums';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  // Language
+  private translate = inject(TranslateService);
+  changeLanguage(lang: string) {
+    this.translate.use(lang); // dynamically switch
+  }
+  
   // Track Navigation
   offcanvasService = inject(NgbOffcanvas);
   router = inject(Router);
@@ -31,6 +38,7 @@ export class NavbarComponent {
   productLink = `/${routeNames.product.path}`;
 
   constructor() {
+    this.translate.use('en');
     this.trackNavigation();
   }
 

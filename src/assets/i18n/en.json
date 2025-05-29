@@ -1,0 +1,4 @@
+{
+    "HELLO": "Hello",
+    "WELCOME_USER": "Welcome, {{name}}"
+}
