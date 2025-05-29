@@ -1,3 +1,3 @@
 export const Version = {
-    static: "1.0.14"
+    static: "1.0.15"
 }
